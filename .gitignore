@@ -1,0 +1,31 @@
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# Локальная база данных
+db.sqlite3
+db.sqlite3-journal
+
+# Переменные окружения (пароли, SECRET_KEY, ключи API)
+.env
+.env.*
+
+# Кэш и скомпилированные файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Статика и медиафайлы (если загружаются пользователями)
+/staticfiles/
+/media/
+
+# Настройки редакторов кода (VS Code, PyCharm)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Системные файлы (macOS / Windows)
+.DS_Store
+Thumbs.db

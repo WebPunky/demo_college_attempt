@@ -14,7 +14,7 @@
         <div>
             <a href="main:hero">FurryParty</a>
             {% if user.is_authenticated %}
-                <a href="">Profile</a>
+                <a href="{% url 'users:profile' %}">Profile</a>
                 <form action="{% url 'users:logout' %}" method="post">
                     {% csrf_token %}
                     <button type="submit">Logout</button>

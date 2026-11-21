@@ -129,7 +129,7 @@ MAILERS = {
 }
 AUTH_USER_MODEL="users.Users"
 
-LOGIN_URL = "login"
-LOGOUT_URL = "login"
-LOGOUT_REDIRECT_URL = "login"
-LOGIN_REDIRECT_URL = "main"
+LOGIN_URL = "/users/login"
+LOGOUT_URL = "/users/login"
+LOGOUT_REDIRECT_URL = "/users/login/"
+LOGIN_REDIRECT_URL = "/hero/"

@@ -13,14 +13,14 @@
     <header>
         <div>
             <a href="main:hero">FurryParty</a>
-            {% if user.authenticated %}
+            {% if user.is_authenticated %}
                 <a href="">Profile</a>
-                {% comment %} <form action="" method="post">
+                <form action="{% url 'users:logout' %}" method="post">
                     {% csrf_token %}
                     <button type="submit">Logout</button>
-                </form> {% endcomment %}
+                </form>
             {% else %}
-                <a href="">Login</a>
+                <a href="{% url 'users:login' %}">Login</a>
                 <a href="">Register</a>
             {% endif %}
         </div>

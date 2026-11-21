@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Base
+        {% endblock title %}            
+    </title>
+</head>
+<body>
+    <header>
+        <div>
+            <a href="main:hero">FurryParty</a>
+            {% if user.authenticated %}
+                <a href="">Profile</a>
+                {% comment %} <form action="" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form> {% endcomment %}
+            {% else %}
+                <a href="">Login</a>
+                <a href="">Register</a>
+            {% endif %}
+        </div>
+    </header>
+    <main>
+        {% block content %}
+            
+        {% endblock content %}  
+    </main>
+
+    <footer>
+        <p>Was made by WebPunky &#60 3</p>
+    </footer>
+</body>
+</html>

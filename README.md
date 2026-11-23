@@ -3,6 +3,7 @@
 ## Requirements
 * Python 3.10 или выше
 * Git
+* Pillow
 
 ## Local host instruction
 

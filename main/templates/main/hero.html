@@ -19,8 +19,10 @@
                         {% endif %}
                         <div class="card-body">
                             <h3 class="card-title">{{ service.title }}</h3>
-                            <p class="card-text text-muted">{{ service.desc }}</p>
+                            <p class="card-text text-muted">{{ service.desc|linebreaks }}</p>
+                            
                         </div>
+                        <p class="card-text m-2"><b>{{ service.price }} рублей/час</b></p>
                     </div>
                 </div>
             {% endfor %}

@@ -12,15 +12,15 @@
         {% endblock title %}            
     </title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
-        <div>
-            <a href="main:hero">FurryParty</a>
+        <div class="navbar bg-light">
+            <a href="/hero/">FurryParty</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'users:profile' %}">Profile</a>
                 <form action="{% url 'users:logout' %}" method="post">
                     {% csrf_token %}
-                    <button type="submit">Logout</button>
+                    <button class="btn" type="submit">Logout</button>
                 </form>
             {% else %}
                 <a href="{% url 'users:login' %}">Login</a>
@@ -29,13 +29,15 @@
         </div>
     </header>
     <main>
-        {% block content %}
-            
-        {% endblock content %}  
+        <div class="row justify-content-center">
+                    {% block content %}
+                        
+                    {% endblock content %}  
+        </div>
     </main>
 
-    <footer>
-        <p>Was made by WebPunky &#60 3</p>
+    <footer class="mt-auto">
+        <p class="">Was made by WebPunky &#60 3</p>
     </footer>
 </body>
 </html>

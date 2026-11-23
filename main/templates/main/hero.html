@@ -7,6 +7,24 @@
     
 
 {% block content %}
-    <p>There is empty</p>
+    <div class="container mt-4">
+        <div class="row g-4">
+            {% for service in services %}
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        {% if service.image %}
+                            <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-fluid">
+                        {% else %}
+                            <p>There is empty</p>
+                        {% endif %}
+                        <div class="card-body">
+                            <h3 class="card-title">{{ service.title }}</h3>
+                            <p class="card-text text-muted">{{ service.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}
     

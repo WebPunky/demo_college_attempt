@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Services
+
+@admin.register(Services)
+class CustomServicesAdmin(admin.ModelAdmin):
+    fields = ["image" ,"title", "desc", "price"]

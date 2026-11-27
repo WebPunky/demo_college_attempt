@@ -13,6 +13,7 @@
         <p class="text-center">{{ user.phone }}</p>
         <div>
             <a href="{% url 'main:create_order' %}">Создать заявку</a>
+            <a href="{% url 'main:list_order' %}">Мои заявки</a>
         </div>
     </div>
 {% endblock content %}

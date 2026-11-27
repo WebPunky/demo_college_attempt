@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+
+{% block title %}
+    Create_order
+{% endblock title %}
+    
+
+{% block content %}
+    <div class="container my-4">
+        <div class="row g-4">
+            {% for order in orders %}
+                <div class="card h-100 shadow-sm">
+                    <h3>{{ order.service.title }}</h3>
+                    <div class="card-body">
+                        <p>{{ order.get_status_display }}</p>
+                        <p>{{ order.scheduled_at }}</p>
+                    </div>
+                    
+                    {% if order.status == "new" %}
+                        <form action="{% url 'main:cancel_order' order.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn" type="submit">Отменить</button>
+                        </form>
+                    {% endif %}
+                        
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+    

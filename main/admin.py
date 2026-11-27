@@ -8,7 +8,7 @@ class CustomServicesAdmin(admin.ModelAdmin):
 
 @admin.register(Orders)
 class CustomOrdersAdmin(admin.ModelAdmin):
-    fields = ["service", "user", "scheduled_at"]
+    fields = ["service", "user", "scheduled_at", "status"]
 
 @admin.register(Review)
 class CustomReviewAdmin(admin.ModelAdmin):

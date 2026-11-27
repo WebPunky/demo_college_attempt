@@ -22,6 +22,12 @@
                             {% csrf_token %}
                             <button class="btn" type="submit">Отменить</button>
                         </form>
+                    {% elif order.status == "done" %}
+                        {% if order.review %}
+                            <p>Ваша оценка: {{ order.review.rating }}</p>
+                        {% else %}
+                            <a href="{% url 'main:create_review' order.id %}">Написать отзыв</a>
+                        {% endif %}
                     {% endif %}
                         
                 </div>

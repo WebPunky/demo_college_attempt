@@ -3,9 +3,10 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 
-from .models import Services, Orders
-from .forms import CreateOrderForm
+from .models import Services, Orders, Review
+from .forms import CreateOrderForm, CreateReviewForm
 
 
 def hero(request: HttpRequest) -> HttpResponse:
@@ -44,3 +45,26 @@ def cancel_order(request: HttpRequest, order_id: int) -> HttpResponse:
         messages.success(request, "Order was cancelled")
 
     return redirect("main:list_order")
+
+@login_required
+def create_review(request: HttpRequest, order_id:int) -> HttpResponse:
+    order = get_object_or_404(Orders, id=order_id, user=request.user)
+
+    if order.status != Orders.Status.DONE:
+        raise PermissionDenied
+
+    if Review.objects.filter(order=order).exists():
+        return redirect("main:order_list")
+
+    if request.method == "POST":
+        form = CreateReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.order = order
+            review.save()
+            return redirect("main:list_order")
+
+    form = CreateReviewForm()
+
+    return render(request, "main/create_review.html", {"form": form, "order": order})
+    

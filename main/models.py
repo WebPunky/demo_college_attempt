@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Services(models.Model):
@@ -50,3 +51,21 @@ class Orders(models.Model):
         self.status = self.Status.CANCELL
         self.cancel_reason = "Отменено клиентом"
         self.save(update_fields=["status", "cancel_reason"])
+
+class Review(models.Model):
+    order = models.OneToOneField(
+        Orders,
+        on_delete=models.CASCADE,
+        related_name="review"   
+    )
+    rating = models.PositiveSmallIntegerField(
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(5)
+        ]
+    )
+    comment = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f"Отзыв на {self.order}: {self.rating}"
